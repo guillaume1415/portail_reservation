@@ -4,10 +4,10 @@ namespace App\Controller;
 
 use App\Entity\Demande;
 use App\Entity\Booking;
+use App\Form\DemandeType;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
-use App\Form\DemandeType;
 use Symfony\Component\HttpFoundation\Request;
 
 
@@ -16,7 +16,7 @@ class DemandeController extends AbstractController
     /**
      * @Route("/demande", name="demande")
      */
-    public function form()
+    public function formIndex()
 
     {
         return $this->render('demande/index.html.twig');

@@ -25,7 +25,7 @@ class BookingController extends AbstractController
     }
 
     /**
-     * @Route("/new", name="booking_new", methods={"GET","POST"})
+     * @Route("/booking/new", name="booking_new", methods={"GET","POST"})
      */
     public function new(Request $request): Response
     {
@@ -60,7 +60,7 @@ class BookingController extends AbstractController
 
 
     /**
-     * @Route("/{id}", name="booking_show", methods={"GET"})
+     * @Route("/booking/{id}", name="booking_show", methods={"GET"})
      */
     public function show(Booking $booking): Response
     {
@@ -70,7 +70,7 @@ class BookingController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="booking_edit", methods={"GET","POST"})
+     * @Route("/booking/edit/{id}", name="booking_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, Booking $booking): Response
     {
@@ -90,7 +90,7 @@ class BookingController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="booking_delete", methods={"DELETE"})
+     * @Route("/booking/delete/{id}", name="booking_delete", methods={"DELETE"})
      */
     public function delete(Request $request, Booking $booking): Response
     {
