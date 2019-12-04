@@ -7,15 +7,17 @@ use App\Repository\BookingRepository;
 use App\Repository\HalleABRepository;
 use CalendarBundle\Entity\Event;
 use CalendarBundle\Event\CalendarEvent;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class CalendarListener
 {
     private $bookingRepository;
+    private $router;
 
-    public function __construct(
-        BookingRepository $bookingRepository
-    ) {
+
+    public function __construct(BookingRepository $bookingRepository,UrlGeneratorInterface $router) {
         $this->bookingRepository = $bookingRepository;
+        $this->router = $router;
     }
 
     /**
@@ -58,7 +60,11 @@ class CalendarListener
                 'backgroundColor' => 'red',
                 'borderColor' => 'red',
             ]);
-            $bookingEvent->addOption('url', 'https://github.com');
+            $bookingEvent->addOption('url',
+                $this->router->generate('booking_show', [
+                    'id' => $booking->getId(),
+                ]))
+            ;
 
             // finally, add the event to the CalendarEvent to fill the calendar
             $calendar->addEvent($bookingEvent);

@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Booking;
 use App\Form\BookingType;
 use App\Repository\BookingRepository;
+use App\Repository\DemandeRepository;
 use App\Repository\HalleABRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -17,10 +18,11 @@ class BookingController extends AbstractController
     /**
      * @Route("/", name="booking_index", methods={"GET"})
      */
-    public function index(BookingRepository $HalleABRepository): Response
+    public function index(BookingRepository $bookingRepository, DemandeRepository $DemandeRepository): Response
     {
         return $this->render('booking/index.html.twig', [
-            'bookings' => $HalleABRepository->findAll(),
+            'bookings' => $bookingRepository->findAll(),
+            'demandes' => $DemandeRepository->findAll()
         ]);
     }
 

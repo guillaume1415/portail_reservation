@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\DemandeRepository")
@@ -28,6 +29,10 @@ class Demande
 
     /**
      * @ORM\Column(type="string", length=255)
+     *   *  * @Assert\Type(
+     *     type="string",
+     *     message="The value {{ value }} is not a valid {{ type }}."
+     * )
      */
     private $title;
 
@@ -48,6 +53,10 @@ class Demande
 
     /**
      * @ORM\Column(type="float", nullable=true)
+     *  * @Assert\Type(
+     *     type="float",
+     *     message="The value {{ value }} is not a valid {{ type }}."
+     * )
      */
     private $taille_terrain;
 

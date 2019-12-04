@@ -6,12 +6,13 @@
 
     <h1>planning</h1>
     {% include '@Calendar/calendar.html' %}
+    <h4>réservation actuelle</h4>
     <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>BeginAt</th>
-                <th>EndAt</th>
+                <th>début</th>
+                <th>fin</th>
                 <th>Title</th>
                 <th>actions</th>
             </tr>
@@ -26,6 +27,38 @@
                 <td>
                     <a href="{{ path('booking_show', {'id': booking.id}) }}">show</a>
                     <a href="{{ path('booking_edit', {'id': booking.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+    <h4>Demande</h4>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>début</th>
+            <th>fin</th>
+            <th>Title</th>
+            <th>actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for demande in demandes %}
+            <tr>
+                <td>{{ demande.id }}</td>
+                <td>{{ demande.beginAt ? demande.beginAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ demande.endAt ? demande.endAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ demande.title }}</td>
+                <td>
+                    <a href="{{ path('booking_show', {'id': demande.id}) }}">show</a>
+                    <a href="{{ path('booking_edit', {'id': demande.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}

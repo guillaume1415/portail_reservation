@@ -3,12 +3,13 @@
 namespace App\Controller;
 
 use App\Entity\Demande;
-use App\Entity\Booking;
 use App\Form\DemandeType;
+use App\Entity\Booking;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 
 class DemandeController extends AbstractController
@@ -25,15 +26,15 @@ class DemandeController extends AbstractController
     /**
      * @Route("/demadnde", name="demanhde")
      */
-    public function forddm(Request $request)
+    public function form(Request $request)
 
     {
         $demande = new Demande();
 
         $form = $this->createForm(DemandeType::class,$demande);
-
         $form->handleRequest($request);
-        if($form->isSubmitted() && $form->isValid){
+
+        if($form->isSubmitted() && $form->isValid()){
             $demande = $form->getData();
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($demande);
@@ -41,7 +42,8 @@ class DemandeController extends AbstractController
 
         }
 
-        return $this->render('demande/index.html.twig', [
+        return $this->render('demande/demande.html.twig', [
+            'demande' => $demande,
             'form' => $form->createView()
         ]);
     }
