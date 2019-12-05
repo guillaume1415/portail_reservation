@@ -24,7 +24,7 @@ class DemandeController extends AbstractController
     }
 
     /**
-     * @Route("/demadnde", name="demanhde")
+     * @Route("/demadnde", name="demanhde",methods={"GET","POST"})
      */
     public function form(Request $request)
 
