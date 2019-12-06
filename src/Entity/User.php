@@ -33,6 +33,8 @@ class User implements UserInterface
      */
     private $password;
 
+    public $confirm_password;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -63,6 +65,7 @@ class User implements UserInterface
     /**
      * @see UserInterface
      */
+
     public function getRoles(): array
     {
         $roles = $this->roles;
@@ -93,6 +96,21 @@ class User implements UserInterface
 
         return $this;
     }
+
+
+    public function getConfirm_Password(): string
+    {
+        return (string) $this->confirm_password;
+    }
+
+    public function setConfirm_Password(string $confirm_password): self
+    {
+        $this->confirm_password = $confirm_password;
+
+        return $this;
+    }
+
+
 
     /**
      * @see UserInterface
