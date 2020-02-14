@@ -6,7 +6,6 @@ use App\Entity\Booking;
 use App\Form\BookingType;
 use App\Repository\BookingRepository;
 use App\Repository\DemandeRepository;
-use App\Repository\HalleABRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,7 +15,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class BookingController extends AbstractController
 {
     /**
-     * @Route("/", name="booking_index", methods={"GET"})
+     * @Route("/admin/booking", name="booking_index", methods={"GET"})
      */
     public function index(BookingRepository $bookingRepository, DemandeRepository $DemandeRepository): Response
     {
@@ -27,7 +26,7 @@ class BookingController extends AbstractController
     }
 
     /**
-     * @Route("/booking/new", name="booking_new", methods={"GET","POST"})
+     * @Route("/admin/booking/new", name="booking_new", methods={"GET","POST"})
      */
     public function new(Request $request): Response
     {
@@ -62,7 +61,7 @@ class BookingController extends AbstractController
 
 
     /**
-     * @Route("/booking/{id}", name="booking_show", methods={"GET"})
+     * @Route("/admin/booking/{id}", name="booking_show", methods={"GET"})
      */
     public function show(Booking $booking): Response
     {
@@ -72,7 +71,7 @@ class BookingController extends AbstractController
     }
 
     /**
-     * @Route("/booking/edit/{id}", name="booking_edit", methods={"GET","POST"})
+     * @Route("/admin/booking/edit/{id}", name="booking_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, Booking $booking): Response
     {
@@ -92,7 +91,7 @@ class BookingController extends AbstractController
     }
 
     /**
-     * @Route("/booking/delete/{id}", name="booking_delete", methods={"DELETE"})
+     * @Route("/admin/booking/delete/{id}", name="booking_delete", methods={"DELETE"})
      */
     public function delete(Request $request, Booking $booking): Response
     {

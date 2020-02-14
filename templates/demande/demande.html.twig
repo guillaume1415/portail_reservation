@@ -3,9 +3,16 @@
 {% block title %}nouvelle réservation{% endblock %}
 
 {% block body %}
+    <br>
     {{ form_start(form) }}
     {{ form_row (form.beginAt)}}
-    <button type="submit" class="btn btn alert-success">
+    {{ form_row (form.endAt)}}
+    {{ form_row (form.title)}}
+    {{ form_row (form.nome_salle)}}
+    {{ form_row (form.strat_arrive)}}
+    {{ form_row (form.bake)}}
+    {{ form_row (form.taille_terrain)}}
+    <button type="submit" class="btn btn-primary">
         valider
     </button>
     {{ form_end(form) }}

@@ -4,7 +4,7 @@
 
     <h1>inscription</h1>
     {{ form_start(form)}}
-        {{ form_row (form.mail, {'label': 'mail' ,
+        {{ form_row (form.email, {'label': 'adresse mail' ,
         'attr' : 
         {'placeholder' : "e-mail"}})}}
         {{ form_row (form.username, {'label': 'nom d\'utilisateur' ,
@@ -13,11 +13,11 @@
         {{ form_row (form.password, {'label': 'mot de passe' ,
         'attr' : 
         {'placeholder' : "mot de passe"}})}}
-        {{ form_row (form.confirme_password, {'label': 'comfirmation mot de passe' ,
+        {{ form_row (form.confirm_password, {'label': 'comfirmation mot de passe' ,
             'attr' : 
         {'placeholder' : "comfirmation mot de passe"}})}}
 
-        <button type="submit" class="btn btn-success">
+        <button type="submit" class="btn btn-primary">
             inscription
         </button>
 

@@ -19,7 +19,7 @@ use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
 use Symfony\Component\Security\Guard\Authenticator\AbstractFormLoginAuthenticator;
 use Symfony\Component\Security\Http\Util\TargetPathTrait;
 
-class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
+class LoginformAuthenticator extends AbstractFormLoginAuthenticator
 {
     use TargetPathTrait;
 
@@ -35,6 +35,7 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
         $this->csrfTokenManager = $csrfTokenManager;
         $this->passwordEncoder = $passwordEncoder;
     }
+
 
     public function supports(Request $request)
     {
@@ -86,7 +87,7 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
         }
 
         // redirect to some "app_homepage" route - of wherever you want
-           return new RedirectResponse($this->urlGenerator->generate('booking_index'));
+            return new RedirectResponse($this->urlGenerator->generate('demande'));
     }
 
     protected function getLoginUrl()

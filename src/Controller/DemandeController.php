@@ -14,17 +14,18 @@ use Symfony\Component\HttpFoundation\Response;
 
 class DemandeController extends AbstractController
 {
+
     /**
-     * @Route("/demande", name="demande")
+     * @Route("/", name="index")
      */
-    public function formIndex()
+    public function Index()
 
     {
         return $this->render('demande/index.html.twig');
     }
 
     /**
-     * @Route("/demadnde", name="demanhde",methods={"GET","POST"})
+     * @Route("/profile/demande", name="demande",methods={"GET","POST"})
      */
     public function form(Request $request)
 
