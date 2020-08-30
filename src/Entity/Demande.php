@@ -56,6 +56,11 @@ class Demande
      */
     private $taille_terrain;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Batiment", inversedBy="demandes")
+     */
+    private $Batiment;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -141,6 +146,18 @@ class Demande
     public function setTailleTerrain(?float $taille_terrain): self
     {
         $this->taille_terrain = $taille_terrain;
+
+        return $this;
+    }
+
+    public function getBatiment(): ?Batiment
+    {
+        return $this->Batiment;
+    }
+
+    public function setBatiment(?Batiment $Batiment): self
+    {
+        $this->Batiment = $Batiment;
 
         return $this;
     }

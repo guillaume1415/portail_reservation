@@ -2,7 +2,9 @@
 
 namespace App\Form;
 
+use App\Entity\Batiment;
 use App\Entity\Demande;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -33,6 +35,12 @@ class DemandeType extends AbstractType
             ])
             ->add('bake', dateType::class, [
                 'label' => "heure de la fin d'activité"
+            ])
+            ->add('Batiment', EntityType::class,[
+                'class' => batiment::class,
+                'choice_label'=> 'name',
+                'multiple' => false,
+                'required' => false
             ])
             ->add('taille_terrain', textType::class, [
                 'label' => "taille du terrain"

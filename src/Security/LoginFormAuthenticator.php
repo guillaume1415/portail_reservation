@@ -87,7 +87,7 @@ class LoginformAuthenticator extends AbstractFormLoginAuthenticator
         }
 
         // redirect to some "app_homepage" route - of wherever you want
-            return new RedirectResponse($this->urlGenerator->generate('demande'));
+            return new RedirectResponse($this->urlGenerator->generate('booking_index'));
     }
 
     protected function getLoginUrl()

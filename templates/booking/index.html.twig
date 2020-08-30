@@ -4,6 +4,22 @@
 
 {% block body %}
 
+    <div class="jumbotron">
+        <div class="container">
+            {{ form_start(form) }}
+            <div class="form-row align-items-end ">
+                <div class="col">
+                    {{ form_row(form.titre) }}
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <button class="btn btn-primary">Recherche</button>
+                    </div>
+                </div>
+            </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
     <h1>planning</h1>
     {% include 'booking/calendar.html.twig' %}
     <h4>réservation actuelle</h4>

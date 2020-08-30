@@ -4,7 +4,9 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\RegistrationType;
+use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\Common\Persistence\ObjectManager;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use \Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,17 +18,21 @@ class SecurityController extends AbstractController
 {
     /**
      * @Route("/inscription",name="security_registration",methods={"GET","POST"})
-     *
+     * @param Request $request
+     * @param ObjectManager $manager
+     * @param UserPasswordEncoderInterface $encoder
+     * @return RedirectResponse|Response
      */
-    public function registration(Request $request,ObjectManager $manager, UserPasswordEncoderInterface $encoder){
+    public function registration(Request $request,ManagerRegistry $managerRegistry, UserPasswordEncoderInterface $encoder){
         $user = new User();
         $form = $this->createForm(RegistrationType::class,$user);
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
             $hash = $encoder->encodePassword($user, $user->getPassword());
             $user->setPassword($hash);
-            $manager->persist($user);
-            $manager->flush($user);
+            $em = $managerRegistry->getManager();
+            $em->persist($user);
+            $em->flush();
             return $this->redirectToRoute('app_login');
         }
         return $this->render('security/registration.html.twig',[

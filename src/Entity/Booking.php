@@ -25,7 +25,7 @@ class Booking
     /**
      * @ORM\Column(type="datetime", nullable=true)
      */
-    private $endAt = null;
+    private $endAt;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -61,6 +61,11 @@ class Booking
      * @ORM\Column(type="string", length=255)
      */
     private $nom_terrain;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Batiment", inversedBy="bookings")
+     */
+    private $Batiment;
 
 
 
@@ -177,6 +182,18 @@ class Booking
     public function setNomTerrain(string $nom_terrain): self
     {
         $this->nom_terrain = $nom_terrain;
+
+        return $this;
+    }
+
+    public function getBatiment(): ?Batiment
+    {
+        return $this->Batiment;
+    }
+
+    public function setBatiment(?Batiment $Batiment): self
+    {
+        $this->Batiment = $Batiment;
 
         return $this;
     }

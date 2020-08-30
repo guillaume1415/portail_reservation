@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\Booking;
+use App\Entity\BookingSearch;
+use App\Form\BookingSearchType;
 use App\Form\BookingType;
 use App\Repository\BookingRepository;
 use App\Repository\DemandeRepository;
@@ -10,18 +12,42 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use CalendarBundle\Controller\CalendarController;
 
 
 class BookingController extends AbstractController
 {
     /**
-     * @Route("/admin/booking", name="booking_index", methods={"GET"})
+     * @Route("/admin/booking", name="booking_index")
+     * @param BookingRepository $bookingRepository
+     * @param Request $request
+     * @param DemandeRepository $DemandeRepository
+     * @return Response
      */
-    public function index(BookingRepository $bookingRepository, DemandeRepository $DemandeRepository): Response
+    public function index(BookingRepository $bookingRepository,Request $request, DemandeRepository $DemandeRepository): Response
     {
+        $search = new BookingSearch;
+
+        $form = $this->createForm(BookingSearchType::class, $search);
+        $form->handleRequest($request);
+
+
+        if ($form->isSubmitted() && $form->isValid())
+        {
+
+            $this->addFlash('success', 'Votre message a été envoyé avec succès.');
+            /*
+                        return $this->redirectToRoute('advert.show', ['id' => $advert->getId(),
+                                                                      'slug' => $advertSlug,
+                                                                     ]
+                                                     )
+                        ;
+            */
+        }
         return $this->render('booking/index.html.twig', [
             'bookings' => $bookingRepository->findAll(),
-            'demandes' => $DemandeRepository->findAll()
+            'demandes' => $DemandeRepository->findAll(),
+            'form' => $form->createView()
         ]);
     }
 

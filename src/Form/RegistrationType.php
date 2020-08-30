@@ -18,9 +18,9 @@ class RegistrationType extends AbstractType
         $builder
             ->add('email',TextType::class,[
                 'label' => "Adresse mail "])
-            ->add('username',TextType::class,[
-                'label' => "Nom d'utilisateur"
-            ])
+//            ->add('username',TextType::class,[
+//                'label' => "Nom d'utilisateur"
+//            ])
             ->add('password',PasswordType::class,[
                 'label' => "Mot de passe"
             ])
