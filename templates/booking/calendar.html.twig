@@ -15,35 +15,31 @@
     <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/timegrid@4.1.0/main.min.js"></script>
 
     <script type="text/javascript">
-
-
-
-
         document.addEventListener('DOMContentLoaded', () => {
             var calendarEl = document.getElementById('calendar-holder');
-            var value = document.getElementById("booking_search_titre").value
+            var title = document.getElementById("booking_search_titre").value
             var batiment = document.getElementById("booking_search_batiments").value
             var calendar = new FullCalendar.Calendar(calendarEl, {
-                local: 'fr',
-                defaultView: 'dayGridMonth',
-                editable: true,
-                scrollTime: '07:00',
-                minTime: '07:00',
-                maxTime: '23:00',
                 eventSources: [
                     {
                         url: "{{ path('fc_load_events') }}",
                         method: "POST",
                         extraParams: {
                             filters: JSON.stringify({
-                                title: value,batiment: batiment
+                                title: title,batiment: batiment
                             })
                         },
                         failure: () => {
-                            // alert("There was an error while fetching FullCalendar!");
+                            alert("There was an error while fetching FullCalendar!");
                         },
                     },
                 ],
+                local: 'fr',
+                defaultView: 'dayGridMonth',
+                editable: true,
+                scrollTime: '07:00',
+                minTime: '07:00',
+                maxTime: '23:00',
                 header: {
                     left: 'prev,next today',
                     center: 'title',

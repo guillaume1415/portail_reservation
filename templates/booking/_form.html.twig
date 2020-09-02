@@ -1,8 +1,39 @@
-
 {% form_theme form 'bootstrap_4_layout.html.twig' %}
 {% block body %}
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
-{{ form_end(form) }}
+    {{ form_start(form) }}
+
+    {# {% if is_granted('ROLE_ADMIN') %} #}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">{{ form_row (form.beginAt) }}</div>
+            <div class="col-md-3">{{ form_row (form.endAt) }}</div>
+            <div class="col-md-3">{{ form_row (form.batiment) }}</div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">{{ form_row (form.title) }}</div>
+            <div class="col-md-3">{{ form_row (form.nom_terrain) }}</div>
+            <div class="col-md-3">{{ form_row (form.taille_terrain) }}</div>
+        </div>
+        <div class="form-row align-items-end">
+            <div class="col-md-3">{{ form_row (form.responsable) }}</div>
+            <div class="col-md-3">{{ form_row (form.number) }}</div>
+            <div class="col-md-4">{{ form_row (form.state) }}</div>
+            {# <div class="col-md-4">{{ form_widget(form.state, { 'attr': {'disabled': 'true','type':'hiden'} }) }}</div> #}
+
+            {# {{ form_widget(form.state, { 'attr': {'disabled': 'false'} }) }} #}
+        </div>
+        <button class="btn btn-primary ">{{ button_label|default('Save') }}</button>
+    </div>
+    {{ form_end(form) }}
+{% endblock %}
+{% block javascripts %}
+    <script>
+        $(document).ready(function () {
+            // you may need to change this code if you are not using Bootstrap Datepicker
+            $('.js-datepicker').datepicker({
+                language: 'pt-BR',
+                format: 'yyyy-mm-dd'
+            });
+        });
+    </script>
 {% endblock %}

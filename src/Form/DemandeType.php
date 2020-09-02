@@ -18,23 +18,22 @@ class DemandeType extends AbstractType
     {
         $builder
             ->add('beginAt', datetimeType::class, [
-                'label' => "heure d'ariver au batiment",
-                'date_label' => '2019-m-d H:i'
+                'widget' => 'single_text',
+                'label' => "heure d'arriver au batiment",
+//                'html5' => false,
+                'attr' => ['class' => 'js-datepicker'],
             ])
-            ->add('endAt', dateType::class, [
-                'label' => "heure de départ du batiment"
+            ->add('endAt', datetimeType::class, [
+                'label' => "heure de départ du batiment",
+                'widget' => 'single_text',
+//                'html5' => false,
+                'attr' => ['class' => 'js-datepicker'],
             ])
             ->add('title', textType::class, [
                 'label' => "non de l'association"
             ])
             ->add('nome_salle', textType::class, [
                 'label' => "nom de la Salle"
-            ])
-            ->add('strat_arrive', dateType::class, [
-                'label' => "heure du début de d'activité"
-            ])
-            ->add('bake', dateType::class, [
-                'label' => "heure de la fin d'activité"
             ])
             ->add('Batiment', EntityType::class,[
                 'class' => batiment::class,

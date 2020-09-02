@@ -3,88 +3,112 @@
 {% block title %}Booking index{% endblock %}
 
 {% block body %}
-
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
     <div class="jumbotron">
+        {{ form_start(form) }}
         <div class="container">
-            {{ form_start(form) }}
-            <div class="form-row align-items-end ">
-                <div class="col">
+            <div class="form-row align-items-end justify-content-md-center">
+                <div class="col-md-3">
                     {{ form_row(form.titre) }}
                 </div>
-                <div class="col">
-                    <div class="form-group">
-                        <button class="btn btn-primary">Recherche</button>
-                    </div>
+                <div class="col-md-3">
+                    {{ form_row(form.batiments) }}
                 </div>
+                <div class="form-group">
+                    <button class="btn btn-primary">Recherche</button>
+                </div>
+
             </div>
-            {{ form_end(form) }}
         </div>
+        {{ form_end(form) }}
     </div>
     <h1>planning</h1>
     {% include 'booking/calendar.html.twig' %}
-    <h4>réservation actuelle</h4>
-    <table class="table">
-        <thead>
+    <div class="container mt-4">
+
+
+        <h4>réservation actuelle</h4>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Début</th>
+                <th>Fin</th>
+                <th>Title</th>
+                <th>Batiment</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for booking in bookings %}
+                <tr>
+                    <td>{{ booking.id }}</td>
+                    <td>{{ booking.beginAt ? booking.beginAt|date('Y-m-d H:i:s') : '' }}</td>
+                    <td>{{ booking.endAt ? booking.endAt|date('Y-m-d H:i:s') : '' }}</td>
+                    <td>{{ booking.title }}</td>
+                    <td>{{ booking.Batiment.name }}</td>
+                    <td>
+                        <a href="{{ path ( 'booking_edit', {id: booking.id }) }}" class="btn btn-primary ">Editer</a>
+                        <form method="post" action="{{ path('booking_delete', {id: booking.id }) }}"
+                              style="display: inline-block "
+                              onsubmit="return confirm('Etes vous sur de vouloir suprimer ce bien')">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ booking.id) }}">
+                            <button class="btn btn-danger">Supprimer</button>
+                        </form>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="5">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+
+        <h4>Demande</h4>
+        <table class="table">
+            <thead>
             <tr>
                 <th>Id</th>
                 <th>début</th>
                 <th>fin</th>
                 <th>Title</th>
+                <th>Batiment</th>
                 <th>actions</th>
             </tr>
-        </thead>
-        <tbody>
-        {% for booking in bookings %}
-            <tr>
-                <td>{{ booking.id }}</td>
-                <td>{{ booking.beginAt ? booking.beginAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ booking.endAt ? booking.endAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ booking.title }}</td>
-                <td>
-                    <a href="{{ path('booking_show', {'id': booking.id}) }}">show</a>
-                    <a href="{{ path('booking_edit', {'id': booking.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="5">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-
-    <h4>Demande</h4>
-    <table class="table">
-        <thead>
-        <tr>
-            <th>Id</th>
-            <th>début</th>
-            <th>fin</th>
-            <th>Title</th>
-            <th>actions</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for demande in demandes %}
-            <tr>
-                <td>{{ demande.id }}</td>
-                <td>{{ demande.beginAt ? demande.beginAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ demande.endAt ? demande.endAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ demande.title }}</td>
-                <td>
-                    <a href="{{ path('booking_show', {'id': demande.id}) }}">show</a>
-                    <a href="{{ path('booking_edit', {'id': demande.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="5">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
+            </thead>
+            <tbody>
+            {% for demande in demandes %}
+                <tr>
+                    <td>{{ demande.id }}</td>
+                    <td>{{ demande.beginAt ? demande.beginAt|date('Y-m-d H:i:s') : '' }}</td>
+                    <td>{{ demande.endAt ? demande.endAt|date('Y-m-d H:i:s') : '' }}</td>
+                    <td>{{ demande.title }}</td>
+                    <td>{{ demande.Batiment.name }}</td>
+                    <td>
+                        <a href="{{ path ( 'booking_edit', {id: demande.id }) }}" class="btn btn-primary ">Editer</a>
+                        <form method="post" action="{{ path('booking_delete', {id: demande.id }) }}"
+                              style="display: inline-block "
+                              onsubmit="return confirm('Etes vous sur de vouloir suprimer ce bien')">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ demande.id) }}">
+                            <button class="btn btn-danger">Supprimer</button>
+                        </form>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="5">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
 
 
 {% endblock %}

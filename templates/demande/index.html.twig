@@ -3,8 +3,11 @@
 {% block title %}Portail{% endblock %}
 
 {% block body %}
- <br>
- <h1>bienvenu sur le portail de réservation grand Nancy</h1>
+ {% for message in app.flashes('success') %}
+  <div class="alert alert-success">
+   {{ message }}
+  </div>
+ <h1>Bienvenue sur le portail de réservation grand Nancy</h1>
 
  <!DOCTYPE html>
  <html lang="en">
@@ -22,7 +25,7 @@
   </style>
  </head>
  <body>
-
+ {% endfor %}
  <div id="demo" class="carousel slide" data-ride="carousel">
   <ul class="carousel-indicators">
    <li data-target="#demo" data-slide-to="0" class="active"></li>
@@ -31,7 +34,8 @@
   </ul>
   <div class="carousel-inner">
    <div class="carousel-item active">
-    <img src="{{ asset('img/picot.jpg') }}" alt="Chicago" >
+{#    <img src="{{ asset('img/picot.jpg') }}" alt="Chicago" >#}
+    <img src="https://www.w3schools.com/bootstrap4/ny.jpg" alt="Chicago" >
     <div class="carousel-caption">
      <h3>Los Angeles</h3>
      <p>We had such a great time in LA!</p>

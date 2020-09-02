@@ -4,6 +4,9 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
+
+use DateTimeInterface;
+
 /**
  * @ORM\Entity(repositoryClass="App\Repository\BookingRepository")
  */
@@ -41,17 +44,6 @@ class Booking
      * @ORM\Column(type="float")
      */
     private $number;
-
-    /**
-     * @ORM\Column(type="time")
-     */
-    private $arrive;
-
-    /**
-     * @ORM\Column(type="time")
-     */
-    private $depart;
-
     /**
      * @ORM\Column(type="string", length=255)
      */
@@ -67,6 +59,16 @@ class Booking
      */
     private $Batiment;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $state = false;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="bookings")
+     */
+    private $name_assosiation;
+
 
 
     public function getId(): ?int
@@ -74,24 +76,27 @@ class Booking
         return $this->id;
     }
 
-    public function getBeginAt(): ?\DateTimeInterface
+    /**
+     * @return DateTimeInterface|null
+     */
+    public function getBeginAt(): ?DateTimeInterface
     {
         return $this->beginAt;
     }
 
-    public function setBeginAt(\DateTimeInterface $beginAt): self
+    public function setBeginAt(DateTimeInterface $beginAt): self
     {
         $this->beginAt = $beginAt;
 
         return $this;
     }
 
-    public function getEndAt(): ?\DateTimeInterface
+    public function getEndAt(): ?DateTimeInterface
     {
         return $this->endAt;
     }
 
-    public function setEndAt(?\DateTimeInterface $endAt = null): self
+    public function setEndAt(?DateTimeInterface $endAt = null): self
     {
         $this->endAt = $endAt;
 
@@ -134,29 +139,6 @@ class Booking
         return $this;
     }
 
-    public function getArrive(): ?\DateTimeInterface
-    {
-        return $this->arrive;
-    }
-
-    public function setArrive(\DateTimeInterface $arrive): self
-    {
-        $this->arrive = $arrive;
-
-        return $this;
-    }
-
-    public function getDepart(): ?\DateTimeInterface
-    {
-        return $this->depart;
-    }
-
-    public function setDepart(\DateTimeInterface $depart): self
-    {
-        $this->depart = $depart;
-
-        return $this;
-    }
 
     public function getTailleTerrain(): ?string
     {
@@ -169,9 +151,6 @@ class Booking
 
         return $this;
     }
-
-
-
 
 
     public function getNomTerrain(): ?string
@@ -197,4 +176,30 @@ class Booking
 
         return $this;
     }
+
+    public function getState(): ?bool
+    {
+        return $this->state;
+    }
+
+    public function setState(bool $state): self
+    {
+        $this->state = $state;
+
+        return $this;
+    }
+
+    public function getNameAssosiation(): ?User
+    {
+        return $this->name_assosiation;
+    }
+
+    public function setNameAssosiation(?User $name_assosiation): self
+    {
+        $this->name_assosiation = $name_assosiation;
+
+        return $this;
+    }
+
+
 }

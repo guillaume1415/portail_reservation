@@ -24,29 +24,19 @@ class BookingController extends AbstractController
      * @param DemandeRepository $DemandeRepository
      * @return Response
      */
-    public function index(BookingRepository $bookingRepository,Request $request, DemandeRepository $DemandeRepository): Response
+    public function index(BookingRepository $bookingRepository, Request $request, DemandeRepository $DemandeRepository): Response
     {
         $search = new BookingSearch;
 
         $form = $this->createForm(BookingSearchType::class, $search);
         $form->handleRequest($request);
-
-
-        if ($form->isSubmitted() && $form->isValid())
-        {
+        if ($form->isSubmitted() && $form->isValid()) {
 
             $this->addFlash('success', 'Votre message a été envoyé avec succès.');
-            /*
-                        return $this->redirectToRoute('advert.show', ['id' => $advert->getId(),
-                                                                      'slug' => $advertSlug,
-                                                                     ]
-                                                     )
-                        ;
-            */
         }
         return $this->render('booking/index.html.twig', [
-            'bookings' => $bookingRepository->findAll(),
-            'demandes' => $DemandeRepository->findAll(),
+            'bookings' => $bookingRepository->findAskBooking(),
+            'demandes' => $bookingRepository->findBooking(),
             'form' => $form->createView()
         ]);
     }
@@ -64,7 +54,7 @@ class BookingController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($booking);
             $entityManager->flush();
-
+            $this->addFlash('success', 'Votre modification à bien était enregistrée');
             return $this->redirectToRoute('booking_index');
         }
 
@@ -75,15 +65,10 @@ class BookingController extends AbstractController
     }
 
 
-
-
     public function calendar(): Response
     {
         return $this->render('booking/calendar.html.twig');
     }
-
-
-
 
 
     /**
@@ -106,7 +91,7 @@ class BookingController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
-
+            $this->addFlash('success', 'Votre modification à bien était enregistrée');
             return $this->redirectToRoute('booking_index');
         }
 
@@ -121,15 +106,15 @@ class BookingController extends AbstractController
      */
     public function delete(Request $request, Booking $booking): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$booking->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $booking->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($booking);
             $entityManager->flush();
+            $this->addFlash('success', 'supprimé avec succès');
         }
 
         return $this->redirectToRoute('booking_index');
     }
-
 
 
 }

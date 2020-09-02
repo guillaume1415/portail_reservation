@@ -37,15 +37,7 @@ class Demande
      */
     private $nome_salle;
 
-    /**
-     * @ORM\Column(type="datetime")
-     */
-    private $strat_arrive;
 
-    /**
-     * @ORM\Column(type="datetime")
-     */
-    private $bake;
 
     /**
      * @ORM\Column(type="float", nullable=true)
@@ -110,30 +102,6 @@ class Demande
     public function setNomeSalle(string $nome_salle): self
     {
         $this->nome_salle = $nome_salle;
-
-        return $this;
-    }
-
-    public function getStratArrive(): ?\DateTimeInterface
-    {
-        return $this->strat_arrive;
-    }
-
-    public function setStratArrive(\DateTimeInterface $strat_arrive): self
-    {
-        $this->strat_arrive = $strat_arrive;
-
-        return $this;
-    }
-
-    public function getBake(): ?\DateTimeInterface
-    {
-        return $this->bake;
-    }
-
-    public function setBake(\DateTimeInterface $bake): self
-    {
-        $this->bake = $bake;
 
         return $this;
     }

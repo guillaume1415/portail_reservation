@@ -35,30 +35,47 @@ class CalendarSubscriber implements EventSubscriberInterface
         $end = $calendar->getEnd();
         $filters = $calendar->getFilters();
 
-        // Modify the query to fit to your entity and needs
-        // Change booking.beginAt by your start date property
-        $bookings = $this->bookingRepository
-            ->createQueryBuilder('b')
-            ->innerJoin("b.Batiment", "u")
-            ->where('b.beginAt BETWEEN :start and :end OR b.endAt BETWEEN :start and :end')
-            ->setParameter('start', $start->format('Y-m-d H:i:s'))
-            ->setParameter('end', $end->format('Y-m-d H:i:s'));
+
+            $bookings = $this->bookingRepository
+                ->createQueryBuilder('b')
+                ->innerJoin("b.Batiment", "u")
+                ->where('b.beginAt BETWEEN :start and :end OR b.endAt BETWEEN :start and :end')
+                ->setParameter('start', $start->format('Y-m-d H:i:s'))
+                ->setParameter('end', $end->format('Y-m-d H:i:s'));
             if ($filters['batiment'] != "") {
                 $bookings
                     ->andWhere('b.title = :title')
                     ->setParameter('title', $filters['title'])
                     ->andWhere('u.id = :batiment')
-                    ->setParameter('batiment', $filters['batiment'])
+                    ->setParameter('batiment', $filters['batiment']);
+                }
+                if ($filters['title'] != "") {
+                    $bookings
+                        ->andWhere('b.title = :title')
+                        ->setParameter('title', $filters['title']);
 
-            ->getQuery()
-            ->getResult()
-        ;
-            }
+                }
+                $bookings->getQuery()
+                ->getResult()
+            ;
+
+        // Modify the query to fit to your entity and needs
+        // Change booking.beginAt by your start date property
+//        $bookings = $this->bookingRepository
+//            ->createQueryBuilder('b')
+//            ->innerJoin("b.Batiment", "u")
+//            ->where('b.beginAt BETWEEN :start and :end OR b.endAt BETWEEN :start and :end')
+//            ->setParameter('start', $start->format('Y-m-d H:i:s'))
+//            ->setParameter('end', $end->format('Y-m-d H:i:s'))
+//            ->getQuery()
+//            ->getResult()
+//        ;
         foreach ($bookings as $booking) {
             // this create the events with your data (here booking data) to fill calendar
             $bookingEvent = new Event(
                 $booking->getTitle(),
                 $booking->getBeginAt(),
+
                 $booking->getEndAt() // If the end date is null or not defined, a all day event is created.
             );
 
