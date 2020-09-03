@@ -76,15 +76,8 @@ class CalendarSubscriber implements EventSubscriberInterface
                 $booking->getTitle(),
                 $booking->getBeginAt(),
 
-                $booking->getEndAt() // If the end date is null or not defined, a all day event is created.
+                $booking->getEndAt() 
             );
-
-            /*
-             * Add custom options to events
-             *
-             * For more information see: https://fullcalendar.io/docs/event-object
-             * and: https://github.com/fullcalendar/fullcalendar/blob/master/src/core/options.ts
-             */
 
             $bookingEvent->setOptions([
                 'backgroundColor' => 'red',

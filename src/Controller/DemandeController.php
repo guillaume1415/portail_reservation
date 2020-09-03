@@ -23,7 +23,7 @@ class DemandeController extends AbstractController
 {
     private $security;
 
-    public function __construct(Security $security)
+    public function __construct(User $security)
     {
         $this->security = $security;
     }
@@ -43,29 +43,18 @@ class DemandeController extends AbstractController
      * @return Response
      */
     public function form(Request $request)
-
     {
         $demande = new Booking();
-        $user = $this->getUser();
-//        $user = $this->security->getUser();
-//        $email = $user->getEmail();
-
-//        $product = $this->getDoctrine()
-//            ->getRepository(User::class)
-//            ->findOneBySomeField($email);
-//        $id_user= $product->getId();
-//        var_dump($user);
+        $user = $this->security->getUser();
+        //insertion du nom de l'assiciation avec les valeurs de session de l'utilisateur
         $demande->setNameAssosiation($user);
-//        echo($demande->getNameAssosiation());
 
         $form = $this->createForm(BookingType::class,$demande);
-
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()){
             $demande = $form->getData();
             $entityManager = $this->getDoctrine()->getManager();
-
             $entityManager->persist($demande);
             $entityManager->flush();
             $this->addFlash('success', 'Votre demande à bien était enregistrée');
