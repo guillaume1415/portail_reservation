@@ -1,0 +1,189 @@
+footer {
+    color: #fff;
+    font-family: 'Yantramanav', Arial, sans-serif;
+}
+
+footer .container-fluid {
+    background-color: #424547;
+
+}
+
+footer a {
+    color: #333;
+}
+
+#footer_contact,
+#footer_horaires,
+#footer_acces,
+#footer_rs,
+#footer_applications {
+    padding: 2rem;
+}
+
+#footer_contact,
+#footer_horaires,
+#footer_acces,
+#footer_rs,
+#footer_applications,
+#footer_nancy_votre_place {
+    padding: 1rem 0;
+}
+
+footer #footer_contact hr,
+footer #footer_rs hr {
+    border-bottom: 1px solid #fff;
+    width: 30px;
+    margin-left: 15px;
+}
+
+footer h2 {
+    font-family: 'Yantramanav', sans-serif;
+    margin: 0 0 .5rem 0;
+    text-transform: uppercase;
+    padding: 0;
+    color: #bebebe;
+    font-weight: 900;
+    font-size: 1.3rem;
+    letter-spacing: .4px;
+}
+
+footer p {
+    font-size: 1rem;
+    padding: 0;
+    margin: 0;
+    margin-left: 0px;
+    line-height: 1.3rem;
+    text-align: left;
+    letter-spacing: .3px;
+}
+
+p {
+    font-family: 'Lato', sans-serif;
+    font-size: 1.05rem;
+    line-height: 1.7rem;
+}
+
+footer #footer_contact .footer_bouton {
+    width: 136px;
+    margin-top: 1rem;
+}
+
+footer p.footer_bouton {
+    font-weight: bolder;
+    border: 1px solid #fff;
+    padding: 1rem 0;
+    margin-left: 0;
+}
+
+footer p.footer_bouton a {
+    text-decoration: none;
+    padding: 1rem 1.3rem 1rem 1.3rem;
+}
+
+footer p a {
+    color: #fff;
+}
+
+/* ACCES  */
+
+ul, ol {
+    padding: 0;
+    line-height: 1.5rem;
+    margin-top: .3rem;
+}
+
+footer ul li {
+    padding-left: 0;
+}
+
+li {
+    list-style-type: none;
+    position: relative;
+    /* padding-left: 1rem; */
+}
+
+footer ul li a {
+    color: #fff;
+    text-decoration: underline;
+}
+
+/* SUIVEZ-NOUS */
+footer div.reseaux_sociaux {
+    text-align: left;
+}
+
+/* UTILISER G-NY */
+.textpic, .ce-image, .ce-nowrap .ce-bodytext, .ce-gallery, .ce-row, .ce-uploads li, .ce-uploads div {
+    overflow: hidden;
+}
+
+figure {
+    margin: 0;
+    margin-bottom: 1rem;
+}
+
+#footer_applications img {
+    width: 60px !important;
+    height: 60px !important;
+}
+
+/* SECOND FOOTER */
+
+footer #second_footer {
+    background-color: #646466;
+    text-align: center;
+    padding: 15px;
+    color: #fff;
+}
+
+
+footer #second_footer ul li {
+    
+    padding-left: .5rem;
+    padding-right: .5rem;
+    margin: 0;
+    text-align: center;
+}
+
+footer #second_footer div {
+    padding: 0;
+}
+
+footer #second_footer ul li a {
+    color: #fff;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/*  */
+@media (min-width: 768px) {
+    footer {
+        position: relative;
+    }
+
+    footer address,
+    footer p {
+        margin-left: 0;
+    }
+
+    footer #second_footer ul li {
+        display: inline-block;
+        width: auto;
+    }
+}
+
+@media (min-width:992){
+    figure {
+        margin: .5rem 0;
+    }
+}
+@media (min-width:1200px) {
+
+    #footer_contact,
+    #footer_horaires,
+    #footer_acces,
+    #footer_rs,
+    #footer_applications {
+        padding: 2rem;
+    }
+}

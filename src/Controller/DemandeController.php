@@ -2,12 +2,11 @@
 
 namespace App\Controller;
 
-use App\Entity\Demande;
+
 use App\Entity\User;
 use App\Form\BookingType;
-use App\Form\DemandeType;
 use App\Entity\Booking;
-use App\Repository\UserRepository;
+use App\Repository\BookingRepository;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\ORM\EntityManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -15,7 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Security;
-use Symfony\Component\Security\Core\User\UserInterface;
+
 
 
 
@@ -23,18 +22,27 @@ class DemandeController extends AbstractController
 {
     private $security;
 
-    public function __construct(User $security)
+
+    public function __construct(Security $security)
+
     {
         $this->security = $security;
+
     }
 
     /**
-     * @Route("/", name="index")
+     * @Route("/profile", name="profile")
+     * @param BookingRepository $bookingRepository
+     * @param Request $request
+     * @return Response
      */
-    public function Index()
-
+    public function index(BookingRepository $bookingRepository, Request $request): Response
     {
-        return $this->render('demande/index.html.twig');
+//        $user = $this->security->getUser();
+        $id =$this->getUser()->getId();
+        return $this->render('demande/index.html.twig', [
+            'bookings' => $bookingRepository->findBookingForOne($id),
+        ]);
     }
 
     /**
@@ -46,9 +54,10 @@ class DemandeController extends AbstractController
     {
         $demande = new Booking();
         $user = $this->security->getUser();
+
+//        dump($user["booking"], $this);
         //insertion du nom de l'assiciation avec les valeurs de session de l'utilisateur
         $demande->setNameAssosiation($user);
-
         $form = $this->createForm(BookingType::class,$demande);
         $form->handleRequest($request);
 
@@ -58,7 +67,7 @@ class DemandeController extends AbstractController
             $entityManager->persist($demande);
             $entityManager->flush();
             $this->addFlash('success', 'Votre demande à bien était enregistrée');
-            return $this->redirectToRoute('index');
+            return $this->redirectToRoute('profile');
         }
 
         return $this->render('demande/demande.html.twig', [

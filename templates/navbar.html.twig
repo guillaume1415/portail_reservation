@@ -1,0 +1,140 @@
+    <div class="container-fluid">
+        <div class="header_menu row">
+            <div class="col-12">
+                <div class="row" id="header">
+                    <div class="col-lg-9 col-6" id="logo_svg">
+                        <a href="/"><img class="logo"
+                                         src="https://www.grandnancy.eu/typo3conf/ext/dsit_configuration/Resources/Public/Images/logo_metropole_couleur.svg"
+                                         alt="logo métropole du Grand-Nancy" style="border:0px;"/></a>
+                    </div>
+
+                    <div class="d-none d-lg-block col-lg-3 align-items-center d-print-none justify-content-end"
+                         id="RS_header_desk">
+                        <div class="row nancy_votre_place">
+                            <div class="col-12">
+                                <a href="https://place-a-nancy.fr/" alt="Nancy votre place est ici" target="_blank"><img
+                                            src="https://www.grandnancy.eu/typo3conf/ext/dsit_configuration/Resources/Public/Images/logo_nancy_votre_place_gris.svg"
+                                            alt="Nancy votre place est ici"/></a>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <a href="https://www.facebook.com/metropolegrandnancy/" target="_blank"
+                                   title="facebook">
+                                    <i class="fab fa-facebook-f RS" aria-hidden="true"></i>
+                                </a>
+                                <a href="https://twitter.com/Grand_Nancy" target="_blank" title="twitter">
+                                    <i class="fab fa-twitter RS" aria-hidden="true"></i>
+                                </a>
+                                <a href="https://www.instagram.com/metropolegrandnancy/" target="_blank"
+                                   title="instagram">
+                                    <i class="fab fa-instagram RS" aria-hidden="true"></i>
+                                </a>
+                                <a href="https://fr.linkedin.com/company/communaut-urbaine-du-grand-nancy"
+                                   target="_blank" title="linkedin">
+                                    <i class="fab fa-linkedin-in RS" aria-hidden="true"></i>
+                                </a>
+                                <a href="https://www.youtube.com/user/CuGrandNancy" target="_blank">
+                                    <i class="fab fa-youtube RS" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-lg-none col-6 text-right pull-right nopadding d-print-none">
+                        <div class="icone_menu">
+                            <i id="icone_menu_ouvert" class="fa fa-bars " aria-hidden="true"></i>
+                            <i id="icone_menu_fermer" class="fa fa-times" aria-hidden="true"></i>
+                        </div>
+                        <div class="icone_menu_recherche ">
+                            <a href="https://recherche.grandnancy.eu/prod/" title="recherche">
+                                <i id="icone_recherche" class="fa fa-search" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="container">
+                    <div class="row d-print-none">
+                        <nav id="menu_desk" class="header_menu_desk col-md-12 d-none d-lg-block">
+                            <ul class="nav nav-pills nav-fill">
+                                {% if not app.user %}
+                                    <li role="presentation" class="menu_desk_niv_1 dropdown nav-item">
+                                        <a class="dropdown-toggle"  href="{{ path('app_login')}}"
+                                           aria-haspopup="true" aria-expanded="false">connexion</a>
+                                        <hr class="d-none d-md-block hr_menu_desk"/>
+                                    </li>
+                                {% else %}
+                                    <li role="presentation" class="menu_desk_niv_1 dropdown nav-item">
+                                        <a class="dropdown-toggle"  href="{{ path('demande') }}"
+                                           aria-haspopup="true" aria-expanded="false">Nouvel réservation</a>
+                                        <hr class="d-none d-md-block hr_menu_desk"/>
+                                    </li>
+                                    <li role="presentation" class="menu_desk_niv_1 dropdown nav-item">
+                                        <a class="dropdown-toggle"  href="{{ path('app_logout')}}"
+                                           aria-haspopup="true" aria-expanded="false">deconexion</a>
+                                        <hr class="d-none d-md-block hr_menu_desk"/>
+                                    </li>
+                                {% endif %}
+                                <li role="presentation" class="menu_desk_niv_1 dropdown nav-item">
+                                    <a class="dropdown-toggle"  href="{{ path('security_registration')}}"
+                                       aria-haspopup="true" aria-expanded="false">inscription</a>
+                                    <hr class="d-none d-md-block hr_menu_desk"/>
+                                </li>
+                                    <hr class="d-none d-md-block hr_menu_desk"/>
+
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="row">
+            <nav id="menu" class="col-sm-12 d-lg-none">
+                <ul class="nav nav-pills nav-fill">
+                    <li role="presentation" class="menu_desk_niv_1 dropdown nav-item">
+                        <a class="dropdown-toggle"  href="{{ path('demande') }}"
+                           aria-haspopup="true" aria-expanded="false">Nouvel réservation</a>
+                        <hr class="d-none d-md-block hr_menu_desk"/>
+                    </li>
+
+
+                    <hr class="d-none d-md-block hr_menu_desk"/>
+
+                </ul>
+
+                <div class="reseaux_sociaux">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-auto">
+                                <a href="https://www.facebook.com/metropolegrandnancy/" target="_blank">
+                                    <i class="fab fa-facebook-f RS" aria-hidden="true"></i>
+                                </a>
+                                <a href="https://fr.linkedin.com/company/communaut-urbaine-du-grand-nancy"
+                                   target="_blank">
+                                    <i class="fab fa-linkedin-in RS" aria-hidden="true"></i>
+                                </a>
+                                <a href="https://www.instagram.com/metropolegrandnancy/" target="_blank">
+                                    <i class="fab fa-instagram RS" aria-hidden="true"></i>
+                                </a>
+                                <a href="https://twitter.com/Grand_Nancy" target="_blank">
+                                    <i class="fab fa-twitter RS" aria-hidden="true"></i>
+                                </a>
+                                <a href="https://www.youtube.com/user/CuGrandNancy" target="_blank">
+                                    <i class="fab fa-youtube RS" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                            <div class="col nancy_votre_place">
+                                <a href="https://place-a-nancy.fr/" alt="Nancy votre place est ici" target="_blank"><img
+                                            class="nancy_votre_place2"
+                                            src="https://www.grandnancy.eu/typo3conf/ext/dsit_configuration/Resources/Public/Images/logo_nancy_site_2_B.svg"
+                                            alt="Nancy votre place est ici"/></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>

@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -51,6 +52,7 @@ class User implements UserInterface
     public function __construct()
     {
         $this->bookings = new ArrayCollection();
+
     }
 
     public function getId(): ?int
@@ -162,11 +164,11 @@ class User implements UserInterface
 
         return $this;
     }
-//
-//    public function __toString(){
-//        // to show the name of the Category in the select
-//        return $this->id;
-//        // to show the id of the Category in the select
-//        // return $this->id;
-//    }
+
+    public function __toString(){
+        // to show the name of the Category in the select
+        return $this->email;
+        // to show the id of the Category in the select
+        // return $this->id;
+    }
 }

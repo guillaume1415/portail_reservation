@@ -24,7 +24,7 @@ class BookingController extends AbstractController
      * @param DemandeRepository $DemandeRepository
      * @return Response
      */
-    public function index(BookingRepository $bookingRepository, Request $request, DemandeRepository $DemandeRepository): Response
+    public function index(BookingRepository $bookingRepository, Request $request): Response
     {
         $search = new BookingSearch;
 
@@ -32,11 +32,11 @@ class BookingController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $this->addFlash('success', 'Votre message a été envoyé avec succès.');
+//            $this->addFlash('success', 'Votre message a été envoyé avec succès.');
         }
         return $this->render('booking/index.html.twig', [
-            'bookings' => $bookingRepository->findAskBooking(),
-            'demandes' => $bookingRepository->findBooking(),
+            'bookings' => $bookingRepository->findBooking(),
+            'demandes' => $bookingRepository->findAskBooking(),
             'form' => $form->createView()
         ]);
     }

@@ -1,0 +1,82 @@
+#recherche_accueil {
+    background-image: url('/public/img/2020_08_mdv.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    /* padding: 1rem .5rem; */
+    min-height: 60vh;
+}
+
+#formulaire_recherche_accueil > div, #formulaire_recherche_contenu > div {
+    background-color: rgba(255,255,255,.6);
+    text-align: center;
+
+}
+
+#formulaire_recherche_accueil h2, #formulaire_recherche h2 {
+    font-family: 'Montserrat', sans-serif;
+    color: black;
+    text-transform: uppercase;
+    font-size: 1.2rem;
+    text-align: center;
+    margin: 1.5rem 0;
+    padding-left: 3rem;
+    padding-right: 3rem;
+    font-weight: 700;
+}
+
+.nopadding {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+form {
+    font-family: 'Lato', sans-serif;
+    font-size: 1.2rem;
+}
+
+#formulaire_recherche_accueil .form-group, #formulaire_recherche_accueil .input-group, #formulaire_recherche_contenu .form-group, #formulaire_recherche_contenu .input-group, #formulaire_recherche .form-group, #formulaire_recherche .input-group, #formulaire_formulaire_recherche_resultats .form-group, #formulaire_recherche_resultats .input-group {
+    width: 100%;
+}
+
+#formulaire_recherche_accueil input, #formulaire_recherche_contenu input, #formulaire_recherche input, #formulaire_recherche_resultats input {
+    border-left: 3px solid #ed1c24;
+    border-right: 0;
+    border-top: 0;
+    border-bottom: 0;
+    border-radius: 0;
+    padding: .9rem;
+}
+
+#formulaire_recherche_accueil .input-group-btn, #formulaire_recherche_contenu .input-group-btn, #formulaire_recherche .input-group-btn, #formulaire_recherche_resultats .input-group-btn {
+    border: 0;
+        border-right-color: currentcolor;
+        border-right-style: none;
+        border-right-width: 0px;
+    border-right: 3px solid #ed1c24;
+    border-radius: 0;
+}
+
+#formulaire_recherche_accueil .input-group-btn .btn, #formulaire_recherche_contenu .input-group-btn .btn, #formulaire_recherche .input-group-btn .btn, #formulaire_recherche_resultats .input-group-btn .btn {
+    background-color: white;
+}
+
+#formulaire_recherche_accueil i.fa-search, #formulaire_recherche i.fa-search, #formulaire_recherche_contenu i.fa-search, #formulaire_formulaire_recherche_resultats i.fa-search {
+    color: #ed1c24;
+    font-size: 2rem;
+    padding: .5rem;
+    cursor: pointer;
+}
+
+
+/*  */
+
+@media (min-width:768px){
+    #formulaire_recherche_accueil {
+        padding-top: 10vh;
+    }
+}
+@media (min-width:1200px){
+    #formulaire_recherche_accueil {
+        padding-top: 15vh;
+    }
+}

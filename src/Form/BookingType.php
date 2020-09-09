@@ -47,10 +47,12 @@ class BookingType extends AbstractType
                 'choice_label' => 'name',
                 'multiple' => false,
                 'required' => false
-            ])
-            ->add('name_assosiation', HiddenType::class, [
-                'required' => false
             ]);
+//            ->add('name_assosiation', EntityType::class, [
+//                'class' => User::class,
+//                'multiple' => false,
+//                'required' => false
+//            ]);
         $user = $this->security->getUser();
         $Roles = $user->getRoles();
         if ($Roles[0] == "ROLE_ADMIN") {

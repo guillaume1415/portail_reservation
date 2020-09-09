@@ -42,4 +42,23 @@ class BookingRepository extends ServiceEntityRepository
             ->join('p.Batiment', 'm')
             ->where('p.state = true');
     }
+
+
+
+    private function findAllBookingForOne($id): QueryBuilder
+    {
+        return $this->createQueryBuilder('p')
+            ->join('p.Batiment', 'm')
+            ->join('p.name_assosiation', 'n')
+            ->where('p.state = true')
+            ->andWhere('p.name_assosiation = :id')
+            ->setParameter('id', $id);
+    }
+
+    public function findBookingForOne($id): array
+    {
+        return $this->findAllBookingForOne($id)
+            ->getQuery()
+            ->getResult();
+    }
 }

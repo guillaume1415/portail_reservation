@@ -1,55 +1,129 @@
 <!DOCTYPE html>
+<html lang="en">
 <html>
     <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>{% block title %}Portail{% endblock %}</title>
 
         {% block stylesheets %}
-            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+            <link rel="shortcut icon"
+                  href="https://www.grandnancy.eu/typo3conf/ext/dsit_configuration/Resources/Public/Images/favicon.jpg"
+                  type="image/jpeg">
+            <meta name="generator" content="TYPO3 CMS">
+            <meta http-equiv="X-UA-Compatible" content="IE=10">
+            <meta name="og:title" content="Accueil">
+            <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+                  media="all">
+            <link rel="stylesheet" type="text/css"
+                  href="https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i,900|Montserrat:400,400i,700|Yantramanav:400,700"
+                  media="all">
+            <link rel="stylesheet" type="text/css"
+                  href="https://www.grandnancy.eu/typo3temp/assets/compressed/merged-e49223a1edce131f609e0429dc3e0d5f.css?1585217841"
+                  media="all">
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js" type="text/javascript"></script>
+            <title>Accueil — Métropole du Grand Nancy.</title>
+            <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=yes"/>
+            <meta name="rubriqueURL" content="{$synomia_rubriqueURL}"/>
+            <link rel="manifest"
+                  href="https://www.grandnancy.eu/typo3conf/ext/dsit_configuration/Resources/Public/Json/manifest.json"/>
+            <meta name="site" content="Métropole"/>
+            {# <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> #}
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fullcalendar/core@4.1.0/main.min.css">
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid@4.1.0/main.min.css">
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fullcalendar/timegrid@4.1.0/main.min.css">
-
 {#            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">#}
+        {% endblock %}
+        {% include 'navbar.html.twig' %}
+{#        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">#}
+{#            <a class="navbar-brand" href="{{ path('index')}}">Navbar</a>#}
+{#            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">#}
+{#                <span class="navbar-toggler-icon"></span>#}
+{#            </button>#}
+{#            <div class="collapse navbar-collapse" id="navbarNav">#}
+{#                <ul class="navbar-nav mr-auto">#}
+{#                    {% if not app.user %}#}
+{#                        <li class="nav-item .col-auto active">#}
+{#                            <a class="nav-link" href="{{ path('app_login')}}">Connexion</a>#}
+{#                        </li>#}
+{#                    {% else %}#}
+{#                        <li class="nav-item active">#}
+{#                            <a class="nav-link" href="{{ path('demande') }}">Nouvel réservation<span class="sr-only">(current)</span></a>#}
+{#                        </li>#}
+{#                        <li class="nav-item">#}
+{#                            <a class="nav-link" href="{{ path('app_logout')}}">Deconnexion</a>#}
+{#                        </li>#}
+{#                    {% endif %}#}
+{#                    <li class="nav-item">#}
+{#                        <a class="nav-link" href="{{ path('security_registration')}}">Inscription</a>#}
+{#                    </li>#}
+{#                </ul>#}
+{#            </div>#}
+{#        </nav>#}
+    </head>
+        {% block head %}
 
         {% endblock %}
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-            <a class="navbar-brand" href="{{ path('index')}}">Navbar</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav mr-auto">
-                    {% if not app.user %}
-                        <li class="nav-item .col-auto active">
-                            <a class="nav-link" href="{{ path('app_login')}}">Connexion</a>
-                        </li>
-                    {% else %}
-                        <li class="nav-item active">
-                            <a class="nav-link" href="{{ path('demande') }}">Nouvel réservation<span class="sr-only">(current)</span></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ path('app_logout')}}">Deconnexion</a>
-                        </li>
-                    {% endif %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ path('security_registration')}}">Inscription</a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-{#        {% block head %}#}
 
-{#        {% endblock %}#}
-    </head>
-{#    <body style="padding: 1% 6%;">#}
         {% block body %}{% endblock %}
-    </body>
+
+    {% include 'footer.html.twig' %}
     {% block javascripts %}
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
     {% endblock %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" type="text/javascript"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" type="text/javascript"
+            integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+            crossorigin="anonymous"></script>
+    <script src="https://www.grandnancy.eu/typo3conf/ext/dsit_configuration/Resources/Public/JavaScript/chrono.js?1562072313"
+            type="text/javascript"></script>
+    <script src="https://www.grandnancy.eu/typo3conf/ext/dsit_configuration/Resources/Public/JavaScript/script.js?1593090652"
+            type="text/javascript"></script>
+    <script src="https://www.grandnancy.eu/typo3conf/ext/dsit_configuration/Resources/Public/JavaScript/autocompletion_grand-nancy.js?1562072313"
+            type="text/javascript"></script>
+    <script src="https://kit.fontawesome.com/17bcdc1f70.js" type="text/javascript"></script>
+
+
+    <script src="https://www.grandnancy.eu/typo3conf/ext/dsit_configuration/Resources/Public/JavaScript/tarteaucitron/tarteaucitron.js?v=1.4"></script>
+
+    <script>tarteaucitron.init({
+            "privacyUrl": "",
+            "hashtag": "#tarteaucitron",
+            "cookieName": "tarteaucitron",
+            "orientation": "bottom",
+            "showAlertSmall": false,
+            "cookieslist": false,
+            "adblocker": false,
+            "AcceptAllCta": true,
+            "highPrivacy": true,
+            "handleBrowserDNTRequest": false,
+            "removeCredit": false,
+            "moreInfoLink": true,
+            "useExternalCss": false,
+            "readmoreLink": "/cookiespolicy",
+            "mandatory": false,
+        });</script>
+
+    <script>tarteaucitron.user.analyticsUa = 'UA-12353647-2';
+        tarteaucitron.user.analyticsMore = function () {
+        };
+        (tarteaucitron.job = tarteaucitron.job || []).push('analytics');
+        (tarteaucitron.job = tarteaucitron.job || []).push('calameo');
+        (tarteaucitron.job = tarteaucitron.job || []).push('youtube');
+        (tarteaucitron.job = tarteaucitron.job || []).push('facebook');
+        (tarteaucitron.job = tarteaucitron.job || []).push('twitter');
+        tarteaucitron.user.facebookpixelId = '339094676680010';
+        tarteaucitron.user.facebookpixelMore = function () {
+        };
+        (tarteaucitron.job = tarteaucitron.job || []).push('facebookpixel');
+        tarteaucitron.user.hotjarId = 1366428;
+        tarteaucitron.user.HotjarSv = 6;
+        (tarteaucitron.job = tarteaucitron.job || []).push('hotjar');</script>
 </html>
 
 
