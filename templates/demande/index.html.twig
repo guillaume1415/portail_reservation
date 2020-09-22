@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Booking index{% endblock %}
+{% block title %}Profil{% endblock %}
 
 {% block body %}
  {% for message in app.flashes('success') %}
@@ -8,7 +8,7 @@
    {{ message }}
   </div>
  {% endfor %}
-  <h1>planning</h1>
+  <h1>Profil</h1>
  {% include 'booking/calendar.html.twig' %}
  <div class="container mt-4">
   <h4>réservation actuelle</h4>
@@ -20,7 +20,7 @@
     <th>Fin</th>
     <th>Title</th>
     <th>Batiment</th>
-    <th>Actions</th>
+{#    <th>Actions</th>#}
    </tr>
    </thead>
    <tbody>
@@ -32,13 +32,52 @@
      <td>{{ booking.title }}</td>
      <td>{{ booking.Batiment.name }}</td>
      <td>
-      <form method="post" action="{{ path('booking_delete', {id: booking.id }) }}"
-            style="display: inline-block "
-            onsubmit="return confirm('Etes vous sur de vouloir suprimer ce votre ressevation')">
-       <input type="hidden" name="_method" value="DELETE">
-       <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ booking.id) }}">
-       <button class="btn btn-danger">annulation</button>
-      </form>
+{#      <form method="post" action="{{ path('booking_delete', {id: booking.id }) }}"#}
+{#            style="display: inline-block "#}
+{#            onsubmit="return confirm('Etes vous sur de vouloir suprimer ce votre ressevation')">#}
+{#       <input type="hidden" name="_method" value="DELETE">#}
+{#       <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ booking.id) }}">#}
+{#       <button class="btn btn-danger">annulation</button>#}
+{#      </form>#}
+     </td>
+    </tr>
+   {% else %}
+    <tr>
+     <td colspan="5">no records found</td>
+    </tr>
+   {% endfor %}
+   </tbody>
+  </table>
+ </div>
+ <div class="container mt-4">
+  <h4>Demande de réservation</h4>
+  <table class="table">
+   <thead>
+   <tr>
+    <th>Id</th>
+    <th>Début</th>
+    <th>Fin</th>
+    <th>Title</th>
+    <th>Batiment</th>
+{#    <th>Actions</th>#}
+   </tr>
+   </thead>
+   <tbody>
+   {% for ask in asks %}
+    <tr>
+     <td>{{ ask.id }}</td>
+     <td>{{ ask.beginAt ? ask.beginAt|date('Y-m-d H:i:s') : '' }}</td>
+     <td>{{ ask.endAt ? ask.endAt|date('Y-m-d H:i:s') : '' }}</td>
+     <td>{{ ask.title }}</td>
+     <td>{{ ask.Batiment.name }}</td>
+     <td>
+{#      <form method="post" action="{{ path('booking_delete', {id: booking.id }) }}"#}
+{#            style="display: inline-block "#}
+{#            onsubmit="return confirm('Etes vous sur de vouloir suprimer ce votre ressevation')">#}
+{#       <input type="hidden" name="_method" value="DELETE">#}
+{#       <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ booking.id) }}">#}
+{#       <button class="btn btn-danger">annulation</button>#}
+{#      </form>#}
      </td>
     </tr>
    {% else %}

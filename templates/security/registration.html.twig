@@ -1,10 +1,10 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-
-    <h1>inscription</h1>
+<div class="container col-md-3">
+    <h1 class="h3 font-weight-normal text-center">inscription</h1>
     {{ form_start(form)}}
-        {{ form_row (form.email, {'label': 'adresse mail' ,
+        {{ form_row (form.email, {'label': 'adresse e-mail' ,
         'attr' : 
         {'placeholder' : "e-mail"}})}}
 {#        {{ form_row (form.username, {'label': 'nom d\'utilisateur' ,#}
@@ -16,10 +16,12 @@
         {{ form_row (form.confirm_password, {'label': 'comfirmation mot de passe' ,
             'attr' : 
         {'placeholder' : "comfirmation mot de passe"}})}}
-
-        <button type="submit" class="btn btn-primary">
+    <div class="col text-center">
+        <button type="submit" class="btn btn-danger">
             inscription
         </button>
-
+    </div>
+</div>
     {{ form_end(form)}}
+</br>
 {% endblock %}

@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Batiment;
 use App\Entity\Booking;
 use App\Entity\User;
+use Doctrine\DBAL\Types\TextType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -48,11 +49,6 @@ class BookingType extends AbstractType
                 'multiple' => false,
                 'required' => false
             ]);
-//            ->add('name_assosiation', EntityType::class, [
-//                'class' => User::class,
-//                'multiple' => false,
-//                'required' => false
-//            ]);
         $user = $this->security->getUser();
         $Roles = $user->getRoles();
         if ($Roles[0] == "ROLE_ADMIN") {

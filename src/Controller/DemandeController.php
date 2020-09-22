@@ -22,12 +22,9 @@ class DemandeController extends AbstractController
 {
     private $security;
 
-
     public function __construct(Security $security)
-
     {
         $this->security = $security;
-
     }
 
     /**
@@ -38,10 +35,10 @@ class DemandeController extends AbstractController
      */
     public function index(BookingRepository $bookingRepository, Request $request): Response
     {
-//        $user = $this->security->getUser();
         $id =$this->getUser()->getId();
         return $this->render('demande/index.html.twig', [
             'bookings' => $bookingRepository->findBookingForOne($id),
+            'asks' => $bookingRepository->findaskForOne($id),
         ]);
     }
 
@@ -50,12 +47,9 @@ class DemandeController extends AbstractController
      * @param Request $request
      * @return Response
      */
-    public function form(Request $request)
-    {
+    public function form(Request $request){
         $demande = new Booking();
         $user = $this->security->getUser();
-
-//        dump($user["booking"], $this);
         //insertion du nom de l'assiciation avec les valeurs de session de l'utilisateur
         $demande->setNameAssosiation($user);
         $form = $this->createForm(BookingType::class,$demande);
@@ -63,13 +57,15 @@ class DemandeController extends AbstractController
 
         if($form->isSubmitted() && $form->isValid()){
             $demande = $form->getData();
+            $title = $demande->getTitle();
+            $new = htmlspecialchars($title, ENT_QUOTES);
+            $demande->setTitle($new);
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($demande);
             $entityManager->flush();
             $this->addFlash('success', 'Votre demande à bien était enregistrée');
             return $this->redirectToRoute('profile');
         }
-
         return $this->render('demande/demande.html.twig', [
             'demande' => $demande,
             'form' => $form->createView()

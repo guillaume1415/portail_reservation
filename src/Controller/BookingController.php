@@ -21,18 +21,14 @@ class BookingController extends AbstractController
      * @Route("/admin/booking", name="booking_index")
      * @param BookingRepository $bookingRepository
      * @param Request $request
-     * @param DemandeRepository $DemandeRepository
      * @return Response
      */
     public function index(BookingRepository $bookingRepository, Request $request): Response
     {
         $search = new BookingSearch;
-
         $form = $this->createForm(BookingSearchType::class, $search);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-
-//            $this->addFlash('success', 'Votre message a été envoyé avec succès.');
         }
         return $this->render('booking/index.html.twig', [
             'bookings' => $bookingRepository->findBooking(),
@@ -64,12 +60,10 @@ class BookingController extends AbstractController
         ]);
     }
 
-
     public function calendar(): Response
     {
         return $this->render('booking/calendar.html.twig');
     }
-
 
     /**
      * @Route("/admin/booking/{id}", name="booking_show", methods={"GET"})

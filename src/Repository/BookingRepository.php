@@ -61,4 +61,21 @@ class BookingRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    private function findAllAskForOne($id): QueryBuilder
+    {
+        return $this->createQueryBuilder('p')
+            ->join('p.Batiment', 'm')
+            ->join('p.name_assosiation', 'n')
+            ->where('p.state = false')
+            ->andWhere('p.name_assosiation = :id')
+            ->setParameter('id', $id);
+    }
+
+    public function findAskForOne($id): array
+    {
+        return $this->findAllAskForOne($id)
+            ->getQuery()
+            ->getResult();
+    }
 }

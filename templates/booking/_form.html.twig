@@ -3,7 +3,7 @@
     {{ form_start(form) }}
 
     {# {% if is_granted('ROLE_ADMIN') %} #}
-    <div class="container">
+    <div class="container ">
         <div class="row">
             <div class="col-md-3">{{ form_row (form.beginAt) }}</div>
             <div class="col-md-3">{{ form_row (form.endAt) }}</div>
@@ -14,7 +14,7 @@
             <div class="col-md-3">{{ form_row (form.nom_terrain) }}</div>
             <div class="col-md-3">{{ form_row (form.taille_terrain) }}</div>
         </div>
-        <div class="form-row align-items-end">
+        <div class="row align-items-end">
             <div class="col-md-3">{{ form_row (form.responsable) }}</div>
             <div class="col-md-3">{{ form_row (form.number) }}</div>
             <div class="col-md-4">{{ form_row (form.state) }}</div>
@@ -22,9 +22,12 @@
 
             {# {{ form_widget(form.state, { 'attr': {'disabled': 'false'} }) }} #}
         </div>
-        <button class="btn btn-primary ">{{ button_label|default('Save') }}</button>
+        <div class="col text-center">
+            <button class="btn btn-danger ">{{ button_label|default('Valider') }}</button>
+        </div>
     </div>
     {{ form_end(form) }}
+    </br>
 {% endblock %}
 {% block javascripts %}
     <script>
